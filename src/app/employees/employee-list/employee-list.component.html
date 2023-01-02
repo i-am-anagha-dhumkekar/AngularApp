@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="header">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr >
+                    <th>ID</th>
+                    <th>Emp Name</th>
+                    <th>Salary</th>
+                    <th>Designation</th>
+                    <th>Join Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employeeService.employees">
+                    <td>{{employee.empId}}</td>
+                    <td>{{employee.empName}}</td>
+                    <td>{{employee.salary}}</td>
+                    <td>{{employee.designation}}</td>
+                    <td>{{employee.dateOfJoining}}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
