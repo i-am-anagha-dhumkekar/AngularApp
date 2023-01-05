@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeesComponent } from './employees/employees.component';
@@ -8,6 +10,7 @@ import { EmployeeAddComponent } from './employees/employee-add/employee-add.comp
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import {EmployeeService } from './shared/employee.service';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,11 @@ import {EmployeeService } from './shared/employee.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]
