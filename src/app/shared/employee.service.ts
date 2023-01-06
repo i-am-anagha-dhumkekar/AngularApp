@@ -62,4 +62,8 @@ export class EmployeeService {
       console.log(error);
     });
   }
+  deleteEmployee(id:number):Observable<any>
+  {
+    return null;
+  }
 }

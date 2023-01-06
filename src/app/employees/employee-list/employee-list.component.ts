@@ -9,7 +9,8 @@ import {EmployeeService} from 'src/app/shared/employee.service'
   styleUrls: ['./employee-list.component.scss']
 })
 export class EmployeeListComponent implements OnInit {
-
+  term:string;
+  p:number;
   constructor(public employeeService: EmployeeService ,private router:Router) { }
 
   ngOnInit(): void { //Life Cycle hook
@@ -45,6 +46,7 @@ deleteEmployee(empId:number){
   console.log(empId);
   if(confirm('Are you confirm')){
     //call service for deletion
+    
     console.log("call service for deletion");
   }
 }

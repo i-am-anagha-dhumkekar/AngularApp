@@ -1,7 +1,19 @@
 
 <div class="container">
     <div class="header">
-        <h2>Employee List</h2>
+        
+        <div class="form-control">
+            <!-- Search Functionality -->
+            <input class="form-control" type="text" placeholder="Search Employee.."
+            [(ngModel)]="term">
+        </div>
+        <div id="heading">
+            <h4 style="float:left;">Employee List</h4>
+            <!-- Add Employee -->
+            <a routerLink="/employeeadd" class="btn btn-dark" 
+            style="float: right;">Add Employee</a>
+        </div>
+        
     </div>
     <table class="table table-bordered table-striped">
         <thead>
@@ -16,22 +28,26 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let employee of employeeService.employees">
-                <td (click)="populateForm(employee)">{{employee.empId}}</td>
-                <td (click)="populateForm(employee)">{{employee.empName}}</td>
-                <td (click)="populateForm(employee)">{{employee.salary}}</td>
-                <td (click)="populateForm(employee)">{{employee.designation}}</td>
-                <td (click)="populateForm(employee)">{{employee.empPhoneNumber}}</td>
-                <td (click)="populateForm(employee)">{{employee.dateOfJoining| date:"dd/MM/yyyy"}}</td>
-                <td>
-                    <button class="btn btn-sm btn-outline-info"
+            <tr *ngFor="let employee of employeeService.employees | filter:term | paginate: { itemsPerPage: 5, currentPage: p }">
+                <td *ngIf="(employee.isActive == true)">{{employee.empId}}</td>
+                <td *ngIf="(employee.isActive == true)">{{employee.empName}}</td>
+                <td *ngIf="(employee.isActive == true)">{{employee.salary}}</td>
+                <td *ngIf="(employee.isActive == true)">{{employee.designation}}</td>
+                <td *ngIf="(employee.isActive == true)">{{employee.empPhoneNumber}}</td>
+                <td *ngIf="(employee.isActive == true)">{{employee.dateOfJoining| date:"dd/MM/yyyy"}}</td>
+                <td *ngIf="(employee.isActive == true)">
+                    <button class="btn btn-sm btn-info"
                     (click)="updateEmployee(employee.empId,employee)" >E</button>
                     &nbsp;
-                    <button class="btn btn-sm btn-outline-danger"
+                    <button class="btn btn-sm btn-danger"
                     (click)="deleteEmployee(employee.empId)">X</button>
                 </td>
             </tr>
         </tbody>
     </table>
-
+    <!-- Footer -->
+    <div class="footer">
+        <!-- Pagination -->
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
 </div>

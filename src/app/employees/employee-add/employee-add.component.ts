@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmployeeService } from 'src/app/shared/employee.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-employee-add',
   templateUrl: './employee-add.component.html',
@@ -13,7 +13,8 @@ export class EmployeeAddComponent implements OnInit {
   _empId:number;
   constructor(public employeeService: EmployeeService,
     private toastr: ToastrService,
-    private route:ActivatedRoute) { } //Inject
+    private route:ActivatedRoute,
+    private router:Router) { } //Inject
 
   ngOnInit(): void { //Life Cycle hook
     this.employeeService.getDepartments();
@@ -30,10 +31,12 @@ export class EmployeeAddComponent implements OnInit {
     {
       this.addEmployee(form);
       //window.location.reload();
+      this.redirect();
     }
     else{
       this.editEmployee(form);
       //window.location.reload();
+      this.redirect();
     }
     
   }
@@ -64,6 +67,12 @@ export class EmployeeAddComponent implements OnInit {
         this.toastr.error("Edit failed!!! Try again..","Failed");
       }
     );
+  }
+
+  redirect(){
+
+    this.router.navigate(['employeeList']);
+
   }
 
 }
